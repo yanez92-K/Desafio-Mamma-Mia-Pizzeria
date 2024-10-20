@@ -1,0 +1,75 @@
+header {
+  position: relative;
+  width: 100%;
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+  background-image: url("/public/img/Header.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position:left;
+  height: 400px;
+
+}
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  height: 100%;
+  opacity: 70%;
+  width: 100%;
+}
+
+header .Tittle,
+header .Subtittle {
+  margin: 0;
+  text-align: center;
+  z-index: 10;
+  color: white;
+}
+
+header .Title {
+  font-variant: small-caps;
+  font-size: 1.4rem;
+}
+
+header .Subtitle {
+  font-style: italic;
+  font-weight: 200;
+  font-size: 0.9rem;
+}
+
+header hr {
+  width: 85%;
+  opacity: 40%;
+  color: white;
+  margin-left: 100px;
+  margin-right: 20px;
+}
+
+
+@media screen and (min-width: 1200px) {
+  header {
+    height: 15vh;
+    background-size: 100%;
+  }
+  
+  header .title {
+    font-size: 2.8rem;
+  }
+  
+  header .subtitle {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}
+@media screen and (min-width: 576px) {
+  header {
+    height: 20vh;
+    background-size: 60%;
+  }
+}
