@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
 import { currency } from "../../utils/NumberFormat";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import CardFooter from "react-bootstrap/CardFooter";
+
 import "./CardPizza.css"
+import IngredientList from "../IngredientList/IngredientList";
+import {
+  Button,
+  Container,
+  CardFooter,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 
 
-const CardPizza = ({ name, price, ingredients, img, id }) => {
+const CardPizza = ({ name, price, ingredients, img,}) => {
   return (
     <Container className="p-4 py-md-5">
       <Card>
@@ -19,11 +24,7 @@ const CardPizza = ({ name, price, ingredients, img, id }) => {
         <ListGroup className="rounded-0 border-0 text-center">
           <ListGroupItem className="border-start-0 border-end-0">
             <p className="fs-5 fw-bold text-dark mb-1">Ingredientes:</p>
-            <ul className="ingredientes">
-              {ingredients.map((ingredients) => (
-                <li key={id}>{ingredients} </li>
-              ))}
-            </ul>
+            <IngredientList ingredients={ingredients} />
           </ListGroupItem>
           <ListGroupItem className="border-start-0 border-end-0 border-bottom-0">
             <p className="h4 my-2">Precio:{currency(price)}</p>
@@ -43,7 +44,6 @@ CardPizza.propTypes = {
   price: PropTypes.number.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
   img: PropTypes.string.isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default CardPizza;
