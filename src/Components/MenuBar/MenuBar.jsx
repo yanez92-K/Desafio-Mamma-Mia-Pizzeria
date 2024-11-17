@@ -1,47 +1,58 @@
 import Container from "react-bootstrap/Container";
 import { currency } from "../../utils/NumberFormat";
 import Nav from "react-bootstrap/Nav";
-import { Button, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
 
 const MenuBar = () => {
-  const token = false; // Cambia a true si el usuario está logueado
+  const token = true; // Cambia a true si el usuario está logueado
   const total = 25000; // Total de la compra
 
-  return (
-    <Navbar
-      expand="lg"
-      bg="dark"
-      data-bs-theme="dark"
-      sticky="top"
-      className="px-2 px-lg-4"
-    >
-      <Container>
-        <Navbar.Brand href="/">Pizzería Mamma Mia!</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto gap-3">
-            <Button variant="outline-light" href="/">
-              🍕 Home
-            </Button>
-            {token ? (
-              <>
-                <Button variant="outline-light">🔒 Logout</Button>
-                <Button variant="outline-light">🔓 Profile</Button>
-              </>
-            ) : (
-              <>
-                <Button variant="outline-light">🔐 Login</Button>
-                <Button variant="outline-light">🔐 Register</Button>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-      <Button variant="outline-info" className="mx-0">
-        🛒 Total: {currency(total)}
-      </Button>
-    </Navbar>
-  );
+    return (
+      <Navbar
+        expand="lg"
+        bg="dark"
+        data-bs-theme="dark"
+        sticky="top"
+        className="px-1 px-lg-4"
+      >
+        <Container>
+          <Link to="/" className="navbar-brand">
+            Pizzería Mamma Mia!
+          </Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Link to="/" className="nav-link">
+                🍕 Home
+              </Link>
+              {token ? (
+                <>
+                  <Link to="/profile" className="nav-link">
+                    🔓 Profile
+                  </Link>
+                  <Link to="/logout" className="nav-link">
+                    🔒 Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="nav-link">
+                    🔐 Login
+                  </Link>
+                  <Link to="/register" className="nav-link">
+                    🔐 Register
+                  </Link>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+        <Link to="/cart" className="mx-auto btn btn-outline-info">
+          🛒 Total: {currency(total)}
+        </Link>
+      </Navbar>
+    );
 };
 
 export default MenuBar;

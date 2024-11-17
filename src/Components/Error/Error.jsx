@@ -1,12 +1,16 @@
+import { Col, Container, Image, Row } from "react-bootstrap";
 
-const Error = ({ error: { name, message } }) => {
+const Error = ({ error: { name, message }, img }) => {
   return (
-    <div className="row mt-5">
-      <div className="col-md-4 mx-auto text-center">
-        <p className="text-danger h2">{name}:</p>
-        <p className="fs-3">{message}</p>
-      </div>
-    </div>
+    <Container className="mt-3">
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} className="text-center">
+          {img && <Image src={img} className="mb-3 w-50" fluid />}
+          <p className="text-danger h2">{name}:</p>
+          <p className="fs-4">{message}</p>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

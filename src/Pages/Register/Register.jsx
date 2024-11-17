@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
+import Form from "../../Components/Form/Form"
+import Input from "../../Components/Input/Input";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const Register = () => {
         text: "Todos los campos son obligatorios",
         icon: "error",
       });
-      return; // Detiene la ejecución si los campos están vacíos
+      return; 
     }
 
     // Validación de contraseñas iguales
@@ -58,13 +60,13 @@ const Register = () => {
   return (
     <main>
       <div className="col-10 col-lg-5 mx-auto pt-5">
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <h2>Register</h2>
 
           <label htmlFor="email">
             Email: <span className="text-danger">*</span>
           </label>
-          <input
+          <Input
             type="email"
             name="email"
             value={formData.email}
@@ -75,7 +77,7 @@ const Register = () => {
           <label htmlFor="password">
             Password: <span className="text-danger">*</span>
           </label>
-          <input
+          <Input
             type="password"
             name="password"
             value={formData.password}
@@ -86,7 +88,7 @@ const Register = () => {
           <label htmlFor="confirmPassword">
             Confirm Password: <span className="text-danger">*</span>
           </label>
-          <input
+          <Input
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
@@ -112,7 +114,7 @@ const Register = () => {
           >
             Register
           </button>
-        </form>
+        </Form>
       </div>
     </main>
   );

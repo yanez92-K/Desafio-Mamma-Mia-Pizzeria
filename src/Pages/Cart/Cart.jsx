@@ -1,4 +1,4 @@
-import { pizzas } from "../../pizzas";
+import { pizzas } from "../../utils/pizzas";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";

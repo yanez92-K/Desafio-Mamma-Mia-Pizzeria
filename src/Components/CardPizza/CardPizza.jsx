@@ -6,7 +6,6 @@ import IngredientList from "../IngredientList/IngredientList";
 import {
   Button,
   Container,
-  CardFooter,
   Card,
   ListGroup,
   ListGroupItem,
@@ -17,7 +16,7 @@ const CardPizza = ({ name, price, ingredients, img,}) => {
   return (
     <Container className="p-4 py-md-5">
       <Card>
-        <Card.Img variant="top" src={img} />
+        <Card.Img variant="top" src={img} className="h-100" />
         <Card.Body>
           <Card.Title className="mb-0">Pizza {name}</Card.Title>
         </Card.Body>
@@ -30,10 +29,10 @@ const CardPizza = ({ name, price, ingredients, img,}) => {
             <p className="h4 my-2">Precio:{currency(price)}</p>
           </ListGroupItem>
         </ListGroup>
-        <CardFooter className="d-flex justify-content-evenly mb-3 bg-white">
-          <Button variant="outline-dark">Ver más 👀</Button>
-          <Button variant="dark">Añadir 🛒</Button>
-        </CardFooter>
+        <Card.Body className="d-flex justify-content-evenly mb-3">
+          <Button variant="dark">Ver más 👀</Button>
+          <Button variant="outline-dark">Añadir 🛒</Button>
+        </Card.Body>
       </Card>
     </Container>
   );
