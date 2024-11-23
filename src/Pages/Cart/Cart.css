@@ -5,11 +5,6 @@
   padding: 20px;
 }
 
-img {
-  width: 100px;
-  height: 100px;
-}
-
 ul {
   display: flex;
   flex-direction: column;
@@ -17,28 +12,6 @@ ul {
   justify-content: right;
   align-items: start;
   width: 600px;
-}
-.card {
-   display: flex;
-   list-style: none;
-   align-items: center;
-   font-weight: 600;
-  gap: 20px;
-}
-div.card-body{
-    width: 400px;
-}
-.card-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    width: 600px;
-}
-.botones {
-  display: flex;
-  gap: 10px;
-  align-items: center;
 }
 
 .Total{

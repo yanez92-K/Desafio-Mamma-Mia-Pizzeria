@@ -8,24 +8,28 @@ import Pizza from "./Pages/Pizza/Pizza";
 import NotFound from "./Pages/NotFound/NotFound";
 import Profile from "./Pages/Profile/Profile";
 import Footer from "./components/footer/Footer";
+import CardProvider from "./Context/CartContext";
+import PizzasProvider from "./Context/PizzasContext";
 
 function App() {
   return (
-    <>
-      <MenuBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/pizza/p001" element={<Pizza />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
-      </Routes>
-      <Footer />
-    </>
-  );
+    <PizzasProvider>
+      <CardProvider>
+        <MenuBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/pizza/p001" element={<Pizza />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Routes>
+        <Footer />
+      </CardProvider>
+    </PizzasProvider>
+  )
 }
 
 export default App;

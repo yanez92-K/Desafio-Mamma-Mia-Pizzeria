@@ -1,12 +1,14 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import { currency } from "../../utils/NumberFormat";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
+import { CartContext } from "../../Context/CartContext";
 
 const MenuBar = () => {
   const token = true; // Cambia a true si el usuario está logueado
-  const total = 25000; // Total de la compra
+  const { cartTotal } = useContext(CartContext)
 
     return (
       <Navbar
@@ -49,7 +51,7 @@ const MenuBar = () => {
           </Navbar.Collapse>
         </Container>
         <Link to="/cart" className="mx-auto btn btn-outline-info">
-          🛒 Total: {currency(total)}
+          🛒 Total: {currency(cartTotal)}
         </Link>
       </Navbar>
     );

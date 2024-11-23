@@ -10,7 +10,7 @@ const Profile = () => {
     <main>
       <Container className="mt-3 d-flex flex-column align-items-center">
         <Col xs={12} className="text-center mb-3">
-          <Image src={avatar} roundedCircle fluid />
+          <Image src={avatar} className="col-6 col-md-2 mx-auto" />
         </Col>
         <Col xs={12} className="text-center fs-5 mb-3">
           <span className="fw-semibold">Email:</span> usuario@example.com
