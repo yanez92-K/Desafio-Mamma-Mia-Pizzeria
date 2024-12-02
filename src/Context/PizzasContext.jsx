@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { fetchData } from "../utils/Fetch";
 
-export const PizzasContext = createContext();
+const PizzasContext = createContext();
 
 const PizzasProvider = ({ children }) => {
   const [pizzas, setPizzas] = useState([]);
@@ -22,5 +22,7 @@ const PizzasProvider = ({ children }) => {
     <PizzasContext.Provider value={context}>{children}</PizzasContext.Provider>
   );
 };
+export const usePizzas = () => useContext(PizzasContext);
+
 
 export default PizzasProvider;

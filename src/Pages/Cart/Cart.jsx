@@ -1,17 +1,18 @@
 
 import "./Cart.css";
-
-import { useContext } from "react";
-import { currency } from "../../utils/NumberFormat";
 import { Button } from "react-bootstrap";
-import CartItem from "../../Components/CardItem/CardItem";
-import { CartContext } from "../../Context/CartContext";
-import { PizzasContext } from "../../Context/PizzasContext";
 import Swal from "sweetalert2";
 
+import { currency } from "../../utils/NumberFormat";
+import CartItem from "../../Components/CardItem/CardItem";
+import { useCart } from "../../Context/CartContext";
+import { usePizzas } from "../../Context/PizzasContext";
+import { useUser } from "../../Context/UserContext";
+
 const Cart = () => {
-  const { cart, cartTotal } = useContext(CartContext);
-  const { findPizza } = useContext(PizzasContext);
+  const { cart, cartTotal } = useCart()
+  const { findPizza } = usePizzas()
+  const { token } = useUser();
   const pagoRealizado = () => {
     Swal.fire({
       title: "Pago realizado con exito!",
@@ -33,18 +34,24 @@ const Cart = () => {
              {cart.map(({ id, count }) => (
                <CartItem key={id} pizza={findPizza(id)} count={count} />
              ))}
-              <div className="Total">
-                <h3>Total: {currency(cartTotal)}</h3>
-                <Button variant="" className="Buy btn-dark">
-                  Pagar
-                </Button>
-              </div>
+             <div className="Total">
+               <p className="h1 mt-2 text-center text-md-start">
+                 Total: {currency(cartTotal)}
+               </p>
+               <Button
+                 variant="dark"
+                 className="Buy btn-dark"
+                 disabled={!token}
+               >
+                 Pagar
+               </Button>
+             </div>
            </>
          )}
        </ul>
      </div>
    </main>
- )
+ );
 }
 
 export default Cart;

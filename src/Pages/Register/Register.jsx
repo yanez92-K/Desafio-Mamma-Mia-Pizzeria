@@ -60,42 +60,43 @@ const Register = () => {
   return (
     <main>
       <div className="col-10 col-lg-5 mx-auto pt-5">
-        <Form onSubmit={handleSubmit}>
-          <h2>Register</h2>
-
-          <label htmlFor="email">
-            Email: <span className="text-danger">*</span>
-          </label>
-          <Input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="form-control"
-          />
-
-          <label htmlFor="password">
-            Password: <span className="text-danger">*</span>
-          </label>
-          <Input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="form-control"
-          />
-
-          <label htmlFor="confirmPassword">
-            Confirm Password: <span className="text-danger">*</span>
-          </label>
-          <Input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="form-control"
-          />
-
+        <Form title="Register" onSubmit={handleSubmit}>
+          <div className="d-flex align-items-center w-100 gap-5">
+            <label htmlFor="email" className="form-label">
+              Email: <span className="text-danger">*</span>
+            </label>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex align-items-center w-100 gap-3">
+            <label htmlFor="password" className="form-label">
+              Password: <span className="text-danger">*</span>
+            </label>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex align-items-center w-100 gap-3">
+            <label htmlFor="confirmPassword" className="form-label">
+              Confirm Password: <span className="text-danger">*</span>
+            </label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+          </div>
           <button
             type="submit"
             className="btn col-6 col-md-4 mx-auto mt-3 square border border-dark"
@@ -112,7 +113,7 @@ const Register = () => {
               e.currentTarget.style.color = "black";
             }}
           >
-            Register
+          Register
           </button>
         </Form>
       </div>
@@ -121,3 +122,4 @@ const Register = () => {
 };
 
 export default Register;
+

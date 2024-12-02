@@ -1,5 +1,5 @@
-import { useContext } from "react";
 import { currency } from "../../utils/NumberFormat";
+import { Link } from "react-router-dom";
 
 import IngredientList from "../IngredientList/IngredientList";
 import {
@@ -9,11 +9,11 @@ import {
   ListGroup,
   ListGroupItem,
 } from "react-bootstrap";
-import { CartContext } from "../../Context/CartContext";
+import { useCart } from "../../Context/CartContext";
 
 
 const CardPizza = ({ pizza: { id, name, price, ingredients, img } }) => {
-  const { modifyCount } = useContext(CartContext)
+  const { modifyCount } = useCart()
 
   return (
     <Container className="p-4 py-md-5">
@@ -32,7 +32,9 @@ const CardPizza = ({ pizza: { id, name, price, ingredients, img } }) => {
           </ListGroupItem>
         </ListGroup>
         <Card.Footer className="d-flex justify-content-evenly mb-3 bg-white">
-          <Button variant="outline-dark">Ver más 👀</Button>
+          <Link className="btn btn-outline-dark" to={`/pizza/${id}`}>
+            Ver más 👀
+          </Link>
           <Button variant="dark" onClick={() => modifyCount(id, "add")}>
             Añadir 🛒
           </Button>

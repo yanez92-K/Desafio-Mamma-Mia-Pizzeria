@@ -4,15 +4,12 @@ export const fetchData = async ({ data, callback, errorCallback }) => {
   try {
     const res = await fetch(endpoint, options);
 
-    if (!res.ok) {
-      const errorMessages = {
-        400: "Solicitud no exitosa",
-        403: "Sin autorización para consultar",
-        404: "No se encontró el servidor",
-        500: "El servidor no pudo procesar la solicitud",
+    if (!res.ok)
+      throw {
+        code: res.status,
+        name: `Error ${res.status}`,
+        message: res.statusText,
       };
-      throw new Error(errorMessages[res.status] || res.statusText);
-    }
 
     const result = await res.json();
     callback(result);

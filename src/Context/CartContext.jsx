@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { PizzasContext } from "./PizzasContext";
+import { usePizzas } from "./PizzasContext";
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const { findPizza } = useContext(PizzasContext);
+  const { findPizza } = usePizzas()
 
   // Calcular el total del carrito
   useEffect(() => {
@@ -46,5 +46,6 @@ const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+export const useCart = () => useContext(CartContext);
 
 export default CartProvider;

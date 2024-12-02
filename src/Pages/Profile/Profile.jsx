@@ -1,11 +1,12 @@
-
-import { Col, Container, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Button, Container, Image } from "react-bootstrap";
 import { HiOutlineLogout } from "react-icons/hi";
 
 import avatar from "./avatar.gif";
+import { useUser } from "../../Context/UserContext";
 
 const Profile = () => {
+  const { logout } = useUser();
+
   return (
     <main>
       <Container className="mt-3 d-flex flex-column align-items-center">
@@ -16,14 +17,17 @@ const Profile = () => {
           <span className="fw-semibold">Email:</span> usuario@example.com
         </Col>
         <Col xs={12} className="text-center">
-          <Link to="/logout" className="btn btn-outline-dark">
+          <Button
+            variant="outline-dark"
+            className="col-6 col-md-2 mt-4 mt-md-0"
+            onClick={logout}
+          >
             <HiOutlineLogout size="1.7rem" className="pb-1" /> Cerrar sesión
-          </Link>
+          </Button>
         </Col>
       </Container>
     </main>
   );
 };
-
 
 export default Profile;

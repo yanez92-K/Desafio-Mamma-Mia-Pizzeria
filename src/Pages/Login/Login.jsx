@@ -21,10 +21,10 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = formData;
 
-    // Inicializa un array para almacenar los mensajes de error
+    // Inicializar un array para almacenar los mensajes de error
     const errors = [];
 
-    // Verifica si los campos están vacíos y agrega mensajes de error
+    // Verificar si los campos están vacíos y agrega mensajes de error
     if (!email.trim() && !password.trim()) {
       errors.push("Todos los campos son obligatorios.");
     } else {
@@ -85,7 +85,6 @@ const Login = () => {
             </label>
             <Input
               id="email"
-              label="Email"
               type="email"
               name="email"
               value={formData.email}
@@ -98,13 +97,30 @@ const Login = () => {
             </label>
             <Input
               id="password"
-              label="Password"
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
             />
           </div>
+          <button
+            type="submit"
+            className="btn col-6 col-md-4 mx-auto mt-3 square border border-dark"
+            style={{
+              transition: "background-color 0.3s ease",
+              backgroundColor: "white",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = "black";
+              e.currentTarget.style.color = "white";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = "white";
+              e.currentTarget.style.color = "black";
+            }}
+          >
+          Login
+          </button>
         </Form>
       </div>
     </main>
@@ -112,3 +128,4 @@ const Login = () => {
 };
 
 export default Login;
+

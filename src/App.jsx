@@ -10,26 +10,38 @@ import Profile from "./Pages/Profile/Profile";
 import Footer from "./components/footer/Footer";
 import CardProvider from "./Context/CartContext";
 import PizzasProvider from "./Context/PizzasContext";
+import { useUser } from "./Context/UserContext";
 
 function App() {
+  const { token } = useUser()
+
   return (
     <PizzasProvider>
       <CardProvider>
         <MenuBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/register"
+            element={token ? <Navigate to="/" replace /> : <Register />}
+          />
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/" replace /> : <Login />}
+          />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/p001" element={<Pizza />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/pizza/:id" element={<Pizza />} />
+          <Route
+            path="/profile"
+            element={token ? <Profile /> : <Navigate to="/login" replace />}
+          />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
         <Footer />
       </CardProvider>
     </PizzasProvider>
-  )
+  );
 }
 
 export default App;

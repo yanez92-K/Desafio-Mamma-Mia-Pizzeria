@@ -1,7 +1,4 @@
 
-import PropTypes from "prop-types";
-
-
 const Input = ({ type, id, invalid, value, onChange, errorMessage }) => {
   return (
     <div>
@@ -18,14 +15,6 @@ const Input = ({ type, id, invalid, value, onChange, errorMessage }) => {
   );
 };
 
-
-Input.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  invalid: PropTypes.bool,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string,
-};
-
 export default Input;
+
+
