@@ -1,22 +1,22 @@
-// regex.js
-
 const checkRegex = (str, title, error, pattern) => {
-  if (!str) return `${title} is required`;
-  return pattern.test(str) ? null : error;
+  if (!str?.trim()) return `${title} es obligatorio`; 
+  return pattern.test(str) ? null : error; 
 };
 
+// Valida el email
 export const checkEmail = (str) =>
   checkRegex(
     str,
     "Email",
-    "Porfavor Ingrese una dirección de mail válido",
+    "Por favor, ingrese una dirección de correo válida",
     /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
   );
 
+// Valida el password
 export const checkPassword = (str) =>
   checkRegex(
     str,
     "Password",
-    "El password debe tener al menos 6 caracteres",
-    /^.{6,}$/
+    "La contraseña debe tener al menos 6 caracteres",
+    /^.{6,}$/ 
   );

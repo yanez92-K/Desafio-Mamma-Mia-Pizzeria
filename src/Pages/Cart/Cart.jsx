@@ -1,26 +1,17 @@
 
 import "./Cart.css";
-import { Button } from "react-bootstrap";
-import Swal from "sweetalert2";
 
 import { currency } from "../../utils/NumberFormat";
 import CartItem from "../../Components/CardItem/CardItem";
 import { useCart } from "../../Context/CartContext";
 import { usePizzas } from "../../Context/PizzasContext";
 import { useUser } from "../../Context/UserContext";
+import Form from "../../components/Form/Form";
 
 const Cart = () => {
-  const { cart, cartTotal } = useCart()
+  const { cart, cartTotal, buyCart, clearCart } = useCart()
   const { findPizza } = usePizzas()
   const { token } = useUser();
-  const pagoRealizado = () => {
-    Swal.fire({
-      title: "Pago realizado con exito!",
-      text: "Presiona ok para continuar",
-      icon: "success",
-      confirmButtonText: "ok",
-    });
-  };
 
  return (
    <main>
@@ -34,18 +25,23 @@ const Cart = () => {
              {cart.map(({ id, count }) => (
                <CartItem key={id} pizza={findPizza(id)} count={count} />
              ))}
-             <div className="Total">
-               <p className="h1 mt-2 text-center text-md-start">
+             <Form
+               submit={{
+                 callback: buyCart,
+                 title: "Pagar",
+                 success: "Compra realizada con exito!!",
+                 variant: "dark",
+                 disabled: !token,
+               }}
+               reset={{
+                 callback: clearCart,
+                 title: "🛒Vaciar carro",
+               }}
+             >
+               <p className="h1 m-0 text-center text-md-start">
                  Total: {currency(cartTotal)}
                </p>
-               <Button
-                 variant="dark"
-                 className="Buy btn-dark"
-                 disabled={!token}
-               >
-                 Pagar
-               </Button>
-             </div>
+             </Form>
            </>
          )}
        </ul>

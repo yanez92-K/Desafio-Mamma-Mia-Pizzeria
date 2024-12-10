@@ -1,11 +1,23 @@
 import { Col, Button, Container, Image } from "react-bootstrap";
 import { HiOutlineLogout } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
 import avatar from "./avatar.gif";
 import { useUser } from "../../Context/UserContext";
 
 const Profile = () => {
-  const { logout } = useUser();
+  const { storedEmail, logout, me } = useUser();
+  const [email, setEmail] = useState();
+
+  useEffect(() => {
+    if (storedEmail) {
+      setEmail(storedEmail);
+      return;
+    }
+    const callback = ({ email }) => setEmail(email);
+    const errorCallback = (err) => err && setEmail("ERROR al recuperar Datos");
+    me(callback, errorCallback);
+  }, [storedEmail, me]);
 
   return (
     <main>
@@ -14,7 +26,7 @@ const Profile = () => {
           <Image src={avatar} className="col-6 col-md-2 mx-auto" />
         </Col>
         <Col xs={12} className="text-center fs-5 mb-3">
-          <span className="fw-semibold">Email:</span> usuario@example.com
+          <span className="fw-semibold">Email:</span> {email}
         </Col>
         <Col xs={12} className="text-center">
           <Button

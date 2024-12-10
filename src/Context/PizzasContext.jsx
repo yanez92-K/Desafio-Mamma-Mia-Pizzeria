@@ -7,7 +7,12 @@ const PizzasProvider = ({ children }) => {
   const [pizzas, setPizzas] = useState([]);
   const [error, setError] = useState();
 
-  const findPizza = (id) => pizzas.find((el) => el.id === id) || {};
+  // const findPizza = (id) => pizzas.find((el) => el.id === id) || {};
+  const findPizza = (id) => {
+    const pizza = pizzas.find((el) => el.id === id);
+    return pizza || {};
+  };
+
 
   useEffect(() => {
     fetchData({
@@ -18,9 +23,7 @@ const PizzasProvider = ({ children }) => {
   }, [setPizzas, setError]);
 
   const context = { pizzas, error, findPizza };
-  return (
-    <PizzasContext.Provider value={context}>{children}</PizzasContext.Provider>
-  );
+  return <PizzasContext.Provider value={context}>{children}</PizzasContext.Provider>
 };
 export const usePizzas = () => useContext(PizzasContext);
 
